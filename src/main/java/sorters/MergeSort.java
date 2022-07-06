@@ -1,5 +1,9 @@
-public class MergeSort {
-	public int[] sort(int[] array1, int[] array2){
+package sorters;
+
+import java.util.Arrays;
+
+public class MergeSort implements Sorter {
+	public int[] merge(int[] array1, int[] array2){
 		int array1Length = array1.length;
 		int array2Length = array2.length;
 
@@ -22,9 +26,10 @@ public class MergeSort {
 			mergedArray[mergeArrayPos++] = array2[array2Pos++];
 		}
 		return mergedArray;
+	}
 
-
-
-
+	@Override
+	public int[] sortArray(int[] arrayToSort) {
+		return new int[0];
 	}
 }

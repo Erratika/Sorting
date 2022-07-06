@@ -1,3 +1,5 @@
+package start;
+
 import java.util.Random;
 public class RandomArrayGenerator {
 
@@ -6,7 +8,6 @@ public class RandomArrayGenerator {
         int[] newArray = new int[arrayLength];
         for (int x =0; x < arrayLength;x++){
             newArray[x] = r.nextInt();
-
         }
         return newArray;
     }
