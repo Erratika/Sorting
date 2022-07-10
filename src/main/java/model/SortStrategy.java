@@ -1,4 +1,6 @@
-package sorters;
+package model;
+
+import model.sorts.*;
 
 public enum SortStrategy {
 	BUBBLE_SORT(1, "Bubble Sort") {
@@ -19,20 +21,6 @@ public enum SortStrategy {
 		@Override
 		public Sorter execute() {
 			return new BinarySort();
-
-		}
-	},
-	INSERTION_SORT(4, "Insertion Sort") {
-		@Override
-		public Sorter execute() {
-			return new InsertionSort();
-
-		}
-	},
-	QUICK_SORT(5, "Quick Sort") {
-		@Override
-		public Sorter execute() {
-			return new QuickSort();
 
 		}
 	};

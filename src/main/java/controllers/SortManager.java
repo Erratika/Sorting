@@ -1,35 +1,33 @@
 package controllers;
 
-import display.DisplayManager;
-import sorters.SortStrategy;
-import sorters.Sorter;
-import start.RandomArrayGenerator;
-import start.SortFactory;
+import view.DisplayManager;
+import exceptions.InvalidArraySizeException;
+import model.SortModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SortManager {
 	private final DisplayManager view;
+	private final SortModel model;
+	private final Logger log = LogManager.getLogger(SortManager.class);
 
 	public SortManager(){
 		view = new DisplayManager();
+		model = new SortModel();
 	}
 
 	public void run() {
-		SortFactory sf = new SortFactory();
-		SortStrategy sortStrategy;
 
 		while (true) {
-			sortStrategy = view.getDesiredSort();
-			Sorter model = sf.createSorter(sortStrategy);
-			if (model != null) {
-				int desiredArrayLength = view.getDesiredArrayLength();
-				int[] unsortedArray = RandomArrayGenerator.randomArray(desiredArrayLength);
-
-				long start = System.nanoTime();
-				int[] sortedArray = model.sortArray(unsortedArray.clone());
-				long end = System.nanoTime();
-
-				view.printResult(unsortedArray, sortStrategy.getName(), sortedArray, end - start);
+			model.setSorter(view.getDesiredSort());
+			try {
+				model.generateArray(view.getDesiredArrayLength());
+			}catch (InvalidArraySizeException e){
+				view.printArrayOutOfBounds();
+				log.error("User input an array size that was outside of reasonable bounds.");
 			}
+				view.printResult(model.getUnsortedArray(), model.getSortStrategy().getName(), model.sortArray(), model.getTimeTaken());
+
 		}
 
 	}

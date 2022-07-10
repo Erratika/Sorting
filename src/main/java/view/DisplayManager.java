@@ -1,11 +1,14 @@
-package display;
+package view;
 
-import sorters.SortStrategy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import model.SortStrategy;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class DisplayManager {
+	private final Logger log = LogManager.getLogger(DisplayManager.class);
 
 	public int getDesiredArrayLength() {
 		System.out.println("Please enter the desired size of the array you want to use as a valid integer e.g. 1,2,3,4...");
@@ -26,9 +29,11 @@ public class DisplayManager {
 				//Error check for Zero or negatives since they are valid values.
 				if (value < 1) {
 					printNonValidIntegerError();
+
 				}
 			} catch (NumberFormatException e) {
 				printNonValidIntegerError();
+				log.error("Entered non-valid integer.");
 				value = 0;
 			}
 		}
@@ -38,6 +43,9 @@ public class DisplayManager {
 
 	private void printNonValidIntegerError() {
 		System.out.println("Not a valid integer. Please try again with a valid integer > 0.");
+	}
+	public void printArrayOutOfBounds(){
+		System.out.println("Specified array size is out of reasonable bounds. Enter an Integer value >= 1 and <= 100.");
 	}
 
 	public SortStrategy getDesiredSort() {
@@ -59,6 +67,5 @@ public class DisplayManager {
 		System.out.println("Result of sort was: " + Arrays.toString(sortedArray));
 		System.out.println("Time taken was: " + timeTaken + " nanoseconds.");
 	}
-
 
 }

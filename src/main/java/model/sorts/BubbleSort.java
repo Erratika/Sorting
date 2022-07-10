@@ -1,4 +1,4 @@
-package sorters;
+package model.sorts;
 
 public class BubbleSort implements Sorter{
     public  int[] sortArray(int[] array){

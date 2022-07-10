@@ -12,3 +12,5 @@ You will be building a program that will allow a user to sort a randomised array
 # Suggested Project Phases
 ## Phase 1
 Write a program which will take an array of ints and sort it using a bubble sort algorithm.Include JUnit tests for this and all subsequent phases (and all subsequent projects for the rest of time)
+
+# Design
