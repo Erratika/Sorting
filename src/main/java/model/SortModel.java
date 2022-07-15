@@ -24,6 +24,7 @@ public class SortModel {
 	public void setSorter(SortStrategy sorter) {
 		try {
 			this.sorter = sortFactory.createSorter(sorter);
+			this.sortStrategy = sorter;
 
 		}catch (NullPointerException e) {
 			log.error("Selected sort strategy was a null value.");
